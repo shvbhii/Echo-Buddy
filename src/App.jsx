@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,31 +14,31 @@ function App() {
   const [isListening, setIsListening] = useState(false);
   const [activeFilter, setActiveFilter] = useState('none');
 
-  // --- THE FIX: This useEffect is now the engine of the continuous loop ---
+  
   useEffect(() => {
-    // This is the condition for a new listening cycle to start.
-    // It runs when the session is active, and the app is not currently busy.
+    
+    
     if (isAppActive && !isListening && !audioURL) {
       setIsListening(true);
     }
   }, [isAppActive, isListening, audioURL]);
 
-  // --- Session Control ---
+  
   const handleStartSession = () => {
     setIsAppActive(true);
-    // The useEffect above will automatically start the first listening cycle.
+    
   };
 
   const handleStopSession = () => {
     setIsAppActive(false);
-    // A full reset of the state
+    
     setIsListening(false);
     setAudioURL(null);
     setCharacterState('idle');
     setMouthOpenness(0);
   };
 
-  // --- Callbacks for the AudioController ---
+  
   const handleRecordingStart = () => {
     setCharacterState('listening');
     setAudioURL(null);
@@ -54,8 +54,8 @@ function App() {
     setCharacterState('talking');
   };
 
-  // When playback is complete, we just reset the state.
-  // The useEffect engine will then detect it's time for the next loop.
+  
+  
   const handlePlaybackComplete = () => {
     setMouthOpenness(0);
     setCharacterState('idle');
@@ -110,11 +110,11 @@ function App() {
       </main>
       
       <AudioController
-        // Recording props
+        
         isActive={isListening}
         onRecordingStart={handleRecordingStart}
         onRecordingComplete={handleRecordingComplete}
-        // Playback props
+        
         audioUrlToPlay={audioURL}
         activeFilter={activeFilter}
         onPlaybackStart={handlePlaybackStart}

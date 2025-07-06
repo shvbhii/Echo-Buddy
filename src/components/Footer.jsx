@@ -1,4 +1,4 @@
-// src/components/Footer.jsx
+
 import React from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -11,7 +11,7 @@ const Footer = () => {
         </p>
         <div className="flex items-center space-x-6">
           <a
-            href="https://github.com/your-github-username" // <-- TODO: Add your GitHub link
+            href="git remote add origin https://github.com/shvbhii/Echo-Buddy.git" 
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-2 hover:text-cyan-400 transition-colors duration-300"
@@ -20,7 +20,7 @@ const Footer = () => {
             <span className="hidden sm:inline">View Source on Github</span>
           </a>
           <a
-            href="https://linkedin.com/in/your-linkedin-username" // <-- TODO: Add your LinkedIn link
+            href="https://www.linkedin.com/in/shvbhi" 
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-2 hover:text-cyan-400 transition-colors duration-300"

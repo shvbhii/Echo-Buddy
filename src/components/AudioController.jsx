@@ -1,4 +1,4 @@
-// src/components/AudioController.jsx
+
 import React, { useEffect, useRef } from 'react';
 import * as Tone from 'tone';
 
@@ -6,12 +6,12 @@ const SPEECH_THRESHOLD = 0.02;
 const MAX_RECORDING_SECONDS = 10;
 
 const AudioController = ({
-  // Recording props
+  
   isActive,
   onRecordingStart,
   onRecordingComplete,
 
-  // Playback props
+  
   audioUrlToPlay,
   activeFilter,
   onPlaybackStart,
@@ -25,7 +25,7 @@ const AudioController = ({
   const streamRef = useRef(null);
   const animationFrameRef = useRef(null);
 
-  // --- Effect for RECORDING ---
+  
   useEffect(() => {
     if (isActive) {
       handleStartListening();
@@ -103,7 +103,7 @@ const AudioController = ({
   };
 
 
-  // --- Effect for PLAYBACK with POWERFUL FILTERS and robust CLEANUP ---
+  
   useEffect(() => {
     if (!audioUrlToPlay) return;
 
@@ -116,17 +116,17 @@ const AudioController = ({
 
       player = new Tone.Player(audioUrlToPlay).toDestination();
       pitchShift = new Tone.PitchShift().toDestination();
-      bitCrusher = new Tone.BitCrusher(4).toDestination(); // Bit depth of 4 for crunchy sound
+      bitCrusher = new Tone.BitCrusher(4).toDestination(); 
       analyserNode = new Tone.Analyser('fft', 256);
 
       if (activeFilter === 'high') {
-        pitchShift.pitch = 12; // Full octave up
+        pitchShift.pitch = 12; 
         player.connect(pitchShift);
       } else if (activeFilter === 'low') {
-        pitchShift.pitch = -12; // Full octave down
+        pitchShift.pitch = -12; 
         player.connect(pitchShift);
       } else if (activeFilter === 'robot') {
-        player.connect(bitCrusher); // Digital robot effect
+        player.connect(bitCrusher); 
       }
       
       player.connect(analyserNode);
@@ -136,7 +136,7 @@ const AudioController = ({
       const checkAudioLevel = () => {
         if (player && player.state === 'started') {
           const level = Tone.dbToGain(analyserNode.getValue()[0]);
-          onAudioActivity(level * 2.5); // Multiply to make it more visible
+          onAudioActivity(level * 2.5); 
           animationFrameId = requestAnimationFrame(checkAudioLevel);
         }
       };

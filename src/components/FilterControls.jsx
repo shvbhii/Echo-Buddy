@@ -1,4 +1,4 @@
-// src/components/FilterControls.jsx
+
 import React from 'react';
 
 const FILTERS = [
